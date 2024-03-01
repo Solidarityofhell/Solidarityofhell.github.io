@@ -1,0 +1,83 @@
+<!DOCTYPE html> 
+<html> 
+
+<head> 
+	<title> 
+		TODO LIST 
+	</title> 
+<style>
+formContainer { 
+            margin-bottom: 20px; 
+        } 
+  table { 
+            border-collapse: collapse; 
+            margin-bottom: 20px; 
+            width: auto; 
+        } 
+  
+        th, 
+        td { 
+            border: 1px solid brown; 
+            padding: 8px; 
+            text-align: left;
+        } 
+  
+        th { 
+            background-color: blue; 
+            color: black; 
+        } 
+    </style>	
+</head> 
+
+<body> 
+	<h1> 
+		TODO list 
+	</h1> 
+
+	<div id="formContainer">  
+		<input type="text"
+			id="todoInput"
+			placeholder="Enter your List"> 
+		<button onclick="addData()"> 
+			Add 
+		</button> 
+	</div> 
+	<table id="outputTable"> 
+		<tr> 
+			<th>Things to do</th>  
+		</tr> 
+	</table> 
+	<script> 
+		function addData() {  
+			let values = 
+				document.getElementById("todoInput").value; 
+			let table = document.getElementById("outputTable"); 
+			let newRow = table.insertRow(table.rows.length); 
+			newRow.insertCell(0).innerHTML = values; 
+			newRow.insertCell(1).innerHTML = 
+				'<button onclick="editData(this)">Edit</button>'+ 
+				'<button onclick="deleteData(this)">Delete</button>'; 
+			clearInputs(); 
+		} 
+
+		function editData(button) { 
+			let row = button.parentNode.parentNode; 
+			let nameCell = row.cells[0]; 
+			let todoInput = 
+				prompt("Enter the updated name:", 
+					nameCell.innerHTML);
+			nameCell.innerHTML = todoInput; 
+		} 
+		function deleteData(button) { 
+
+			let row = button.parentNode.parentNode; 
+			row.parentNode.removeChild(row); 
+		} 
+		function clearInputs() { 
+			document.getElementById("todoInput").value = ""; 
+			
+		} 
+	</script> 
+</body> 
+
+</html>
